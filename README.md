@@ -4,6 +4,7 @@
 
 - Brew
 - Dracula theme
+- Install Fira Code
 - ITerm2
 - Tmux
 - Nvim
