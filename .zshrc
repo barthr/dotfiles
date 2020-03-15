@@ -17,7 +17,7 @@ alias dc=docker-compose
 
 export KEYTIMEOUT=1
 
-[ -f ~/Documents/felyx/.secrets] && source ~/Documents/felyx/.secrets
+[ -f ~/Documents/felyx/.secrets.sh ] && . ~/Documents/felyx/.secrets.sh
 
 plugins=(history sudo autojump git go vi-mode)
 
