@@ -41,11 +41,6 @@ set number " line numbering
 set encoding=utf8
 set title
 set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300 " to avoid delays
-set signcolumn=yes
 
 set backspace=indent,eol,start
 
