@@ -1,12 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
+export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -14,6 +11,10 @@ ZSH_THEME="robbyrussell"
 
 alias d=docker
 alias dc=docker-compose
+alias ls="ls -F -h --color=auto --group-directories"
+alias grep="grep --color=auto"
+alias hgrep="history | grep"
+alias ccat="highlight -O ansi --"
 
 export KEYTIMEOUT=1
 
@@ -21,7 +22,7 @@ export KEYTIMEOUT=1
 
 plugins=(history sudo autojump git go vi-mode)
 
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # Mac
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh

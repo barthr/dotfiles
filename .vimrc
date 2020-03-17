@@ -29,7 +29,6 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " fix leader key
 let mapleader=" "
 
-set relativenumber
 set termguicolors
 set background=dark
 set foldcolumn=2
@@ -42,6 +41,11 @@ set number " line numbering
 set encoding=utf8
 set title
 set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300 " to avoid delays
+set signcolumn=yes
 
 set backspace=indent,eol,start
 
@@ -77,4 +81,3 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
