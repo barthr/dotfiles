@@ -11,7 +11,6 @@ ZSH_THEME="robbyrussell"
 
 alias d=docker
 alias dc=docker-compose
-alias ls="ls -F -h --color=auto --group-directories"
 alias grep="grep --color=auto"
 alias hgrep="history | grep"
 alias ccat="highlight -O ansi --"
