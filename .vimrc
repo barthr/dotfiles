@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'dracula/vim', { 'as': 'dracula' } 
  Plug 'https://github.com/ctrlpvim/ctrlp.vim'
  Plug 'https://github.com/tpope/vim-fugitive'
+ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 colorscheme dracula 
@@ -41,6 +42,11 @@ set number " line numbering
 set encoding=utf8
 set title
 set hidden
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+
 
 set backspace=indent,eol,start
 
