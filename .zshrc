@@ -14,6 +14,7 @@ alias dc=docker-compose
 alias grep="grep --color=auto"
 alias hgrep="history | grep"
 alias ccat="highlight -O ansi --"
+alias gitb="git for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'"
 
 export KEYTIMEOUT=1
 
