@@ -20,7 +20,7 @@ export KEYTIMEOUT=1
 
 [ -f ~/Documents/felyx/.secrets.sh ] && . ~/Documents/felyx/.secrets.sh
 
-plugins=(history sudo autojump git go vi-mode)
+plugins=(history sudo autojump git golang vi-mode)
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
