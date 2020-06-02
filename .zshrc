@@ -32,5 +32,4 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Start ssh agent on startup
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
-  ssh-add
 fi
