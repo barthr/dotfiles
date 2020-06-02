@@ -2,6 +2,7 @@
 export PATH=$HOME/.local/bin:$PATH
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export SSH_ASKPASS=ksshaskpass
 
 export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -32,4 +33,6 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Start ssh agent on startup
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
+  ssh-add < /dev/null
 fi
+
