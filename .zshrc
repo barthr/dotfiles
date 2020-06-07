@@ -31,8 +31,11 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 # Start ssh agent on startup
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add < /dev/null
+#eval 
+#
+if ! ps -p $SSH_AGENT_PID > /dev/null
+then
+	eval `ssh-agent -s`
+	eval `ssh-add < /dev/null`
 fi
 
