@@ -2,6 +2,7 @@
 export PATH=$HOME/.local/bin:$PATH
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export SSH_ASKPASS=ksshaskpass
 
 export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -21,7 +22,7 @@ export KEYTIMEOUT=1
 
 [ -f ~/Documents/felyx/.secrets.sh ] && . ~/Documents/felyx/.secrets.sh
 
-plugins=(history sudo autojump git go vi-mode)
+plugins=(history sudo autojump git golang vi-mode)
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
@@ -31,9 +32,18 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 # Start ssh agent on startup
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
+#eval 
+#
+if [ $(ps ax | grep ssh-agent | wc -l) -gt 0 ] ; then
+		
+else
+    eval $(ssh-agent -s)
+    if [ "$(ssh-add -l)" == "The agent has no identities." ] ; then
+        ssh-add < /dev/null
+    fi
+
+    # Don't leave extra agents around: kill it on exit. You may not want this part.
+    trap "ssh-agent -k" exit
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
