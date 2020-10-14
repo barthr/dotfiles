@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/opt/jetbrains/intelij/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export SSH_ASKPASS=ksshaskpass
@@ -35,8 +37,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Start ssh agent on startup
 #eval 
 #
-eval $(ssh-agent -s)
-eval $(ssh-add < /dev/null)
+# eval $(ssh-agent -s) eval $(ssh-add < /dev/null)
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/bart/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/bart/google-cloud-sdk/path.zsh.inc'; fi
