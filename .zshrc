@@ -21,9 +21,19 @@ _comp_options+=(globdots) # With hidden files
 source ~/dotfiles/zsh/plugins/completion.zsh
 
 fpath=(~/dotfiles/zsh/prompt $fpath)
-autoload -Uz prompt.zsh; prompt.zsh
+fpath=(~/dotfiles/zsh/plugins $fpath)
 
+autoload -Uz prompt.zsh; prompt.zsh
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# bindkey -v
 export KEYTIMEOUT=1
+
+setopt AUTO_PUSHD           # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
+setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
 
 # plugins=(history sudo autojump git golang vi-mode)
 
