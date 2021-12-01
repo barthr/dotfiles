@@ -9,12 +9,12 @@ let &t_8b = "\e[48;2;%lu;%lu;%lum"
 " Fix bug in vim
 let &t_ut=''
 
-call plug#begin('~/.vim/plugged')
- Plug 'dracula/vim', { 'as': 'dracula' } 
- Plug 'https://github.com/ctrlpvim/ctrlp.vim'
- Plug 'https://github.com/tpope/vim-fugitive'
- Plug 'itchyny/lightline.vim'
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+"Plug 'dracula/vim', { 'as': 'dracula' } 
+"Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+"Plug 'https://github.com/tpope/vim-fugitive'
+"Plug 'itchyny/lightline.vim'
+" call plug#end()
 
 colorscheme dracula 
 

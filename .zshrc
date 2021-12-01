@@ -1,5 +1,5 @@
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
 export PATH=$PATH:/opt/jetbrains/intelij/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -7,6 +7,9 @@ export SSH_ASKPASS=ksshaskpass
 export PATH=~/.npm-global/bin:$PATH
 export EDITOR=vim
 export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:/home/bart/.rbenv/bin
+#export PATH=/usr/lib/graalvm/graalvm-ce-java11-21.0.0.2/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export VISUAL=$EDITOR
 
 HISTFILE="$HOME/.zsh_history"
@@ -60,4 +63,13 @@ fpath=($fpath "/home/bart/.zfunctions")
 autoload -U promptinit; promptinit
 prompt spaceship
 
+eval "$(rbenv init -)"
+
+# . $HOME/.asdf/asdf.sh
+# fpath=(${ASDF_DIR}/completions $fpath)
+# autoload -Uz compinit && compinit
+
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
