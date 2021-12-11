@@ -9,6 +9,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
     Plug 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
     Plug 'nvim-treesitter/nvim-treesitter' -- tree sitter for faster syntax highlighting
+    --  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 vim.call('plug#end')
 -- end plugin section
 

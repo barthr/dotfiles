@@ -15,6 +15,7 @@ export VISUAL=$EDITOR
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
+
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -65,11 +66,9 @@ prompt spaceship
 
 eval "$(rbenv init -)"
 
-# . $HOME/.asdf/asdf.sh
-# fpath=(${ASDF_DIR}/completions $fpath)
-# autoload -Uz compinit && compinit
-
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+alias vim=nvim
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
