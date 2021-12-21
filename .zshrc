@@ -69,6 +69,8 @@ eval "$(rbenv init -)"
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias vim=nvim
+# manage dotfiles
+alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
