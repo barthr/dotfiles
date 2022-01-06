@@ -59,12 +59,16 @@ SPACESHIP_CHAR_PREFIX=' '
 SPACESHIP_DIR_PREFIX=' '
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
 
-
 fpath=($fpath "/home/bart/.zfunctions")
 autoload -U promptinit; promptinit
 prompt spaceship
 
 eval "$(rbenv init -)"
+
+# FZF 
+#
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
