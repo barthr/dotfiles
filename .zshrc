@@ -1,6 +1,7 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/opt/jetbrains/intelij/bin
+export PATH=$PATH:~/Flutter/flutter/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export SSH_ASKPASS=ksshaskpass
@@ -8,11 +9,31 @@ export PATH=~/.npm-global/bin:$PATH
 export EDITOR=vim
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/home/bart/.rbenv/bin
-#export PATH=/usr/lib/graalvm/graalvm-ce-java11-21.0.0.2/bin:$PATH
+export PATH=$PATH:"$HOME/.cargo/env"
+
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export VISUAL=$EDITOR
 
-HISTFILE="$HOME/.zsh_history"
+## DENO
+export DENO_INSTALL="/home/bart/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+## END DENO
+
+## FLY.IO
+export FLYCTL_INSTALL="/home/bart/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+##
+#
+# VAGRANT
+export VAGRANT_DEFAULT_PROVIDER=libvirt
+
+## NPM
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+## END NPM
+
+export HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
@@ -31,6 +52,8 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 source ~/dotfiles/zsh/aliases
 
+source "$(redo alias-file)"
+
 autoload -Uz compinit; compinit
 _comp_options+=(globdots) 
 
@@ -39,10 +62,15 @@ source ~/dotfiles/zsh/plugins/completion.zsh
 fpath=(~/dotfiles/zsh/plugins $fpath)
 fpath=(~/dotfiles/zsh/plugins/zsh-completions/src $fpath)
 
+# ZSH autosuggestions
+source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
 autoload -Uz git.zsh; git.zsh
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+bindkey -s '^e' 'redo^M'
 
 # bindkey -v
 export KEYTIMEOUT=1
@@ -63,13 +91,6 @@ fpath=($fpath "/home/bart/.zfunctions")
 autoload -U promptinit; promptinit
 prompt spaceship
 
-eval "$(rbenv init -)"
-
-# FZF 
-#
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias vim=nvim
@@ -78,3 +99,5 @@ alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
