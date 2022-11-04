@@ -11,8 +11,7 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
 
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-export VISUAL=$EDITOR
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-17.0.4.1.1-1.fc36.x86_64"
 
 ## DENO
 export DENO_INSTALL="/home/bart/.deno"
@@ -25,8 +24,6 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 ##
 #
 # VAGRANT
-export VAGRANT_DEFAULT_PROVIDER=libvirt
-
 ## NPM
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
@@ -36,6 +33,8 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
+
+alias python3="/usr/bin/python3.9"
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
@@ -69,8 +68,10 @@ bindkey '^ ' autosuggest-accept
 autoload -Uz git.zsh; git.zsh
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
 bindkey -s '^e' 'redo^M'
+
+# fix keys
+bindkey '^[[3~' delete-char 
 
 # bindkey -v
 export KEYTIMEOUT=1
@@ -101,3 +102,9 @@ alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 export PATH=$PATH:$HOME/.pulumi/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+
+## AUTOCOMPLETE TLDR
