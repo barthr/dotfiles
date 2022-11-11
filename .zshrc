@@ -13,10 +13,7 @@ export PATH=$PATH:"$HOME/.cargo/env"
 
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-17.0.4.1.1-1.fc36.x86_64"
 
-## DENO
-export DENO_INSTALL="/home/bart/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-## END DENO
+export DOCKER_BUILDKIT=1
 
 ## FLY.IO
 export FLYCTL_INSTALL="/home/bart/.fly"
@@ -70,8 +67,14 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -s '^e' 'redo^M'
 
-# fix keys
-bindkey '^[[3~' delete-char 
+# Fix weird keybindings
+bindkey "^[[1;5C"  forward-word
+bindkey "^[[1;5D"  backward-word
+bindkey  "^[[H"    beginning-of-line
+bindkey  "^[[F"    end-of-line
+bindkey  "^[[3~"   delete-char
+bindkey  "\C-h"    backward-kill-word
+bindkey  "\e[3;5~" kill-word
 
 # bindkey -v
 export KEYTIMEOUT=1
@@ -89,8 +92,7 @@ SPACESHIP_DIR_PREFIX=' '
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
 
 fpath=($fpath "/home/bart/.zfunctions")
-autoload -U promptinit; promptinit
-prompt spaceship
+source ~/dotfiles/zsh/themes/spaceship-prompt/spaceship.zsh
 
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -98,13 +100,10 @@ alias vim=nvim
 # manage dotfiles
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 
 ## AUTOCOMPLETE TLDR
