@@ -10,8 +10,7 @@ export EDITOR=vim
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
-
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-17.0.4.1.1-1.fc36.x86_64"
+export PATH=$PATH:"$HOME/.local/share/zig-11.0/"
 
 export DOCKER_BUILDKIT=1
 
@@ -97,6 +96,9 @@ source ~/dotfiles/zsh/themes/spaceship-prompt/spaceship.zsh
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias vim=nvim
+alias "c=xclip"
+alias "v=xclip -o"
+
 # manage dotfiles
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
@@ -107,3 +109,7 @@ alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 
 ## AUTOCOMPLETE TLDR
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
