@@ -4,9 +4,8 @@ export PATH=$PATH:/opt/jetbrains/intelij/bin
 export PATH=$PATH:~/Flutter/flutter/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export SSH_ASKPASS=ksshaskpass
 export PATH=~/.npm-global/bin:$PATH
-export EDITOR=vim
+export EDITOR=nvim
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
@@ -64,7 +63,6 @@ bindkey '^ ' autosuggest-accept
 autoload -Uz git.zsh; git.zsh
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -s '^e' 'redo^M'
 
 # Fix weird keybindings
 bindkey "^[[1;5C"  forward-word
@@ -82,7 +80,6 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS    
 setopt PUSHD_SILENT         
 
-# Linux
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
@@ -92,24 +89,13 @@ SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
 
 fpath=($fpath "/home/bart/.zfunctions")
 source ~/dotfiles/zsh/themes/spaceship-prompt/spaceship.zsh
-
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias vim=nvim
 alias "c=xclip"
 alias "v=xclip -o"
 
-# manage dotfiles
-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
-
-## AUTOCOMPLETE TLDR
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
