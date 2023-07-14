@@ -10,6 +10,7 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
 export PATH=$PATH:"$HOME/.local/share/zig-11.0/"
+export PATH=$PATH:~/dotfiles/scripts
 
 export DOCKER_BUILDKIT=1
 
