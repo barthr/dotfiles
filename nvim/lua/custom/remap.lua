@@ -8,6 +8,21 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 
 vim.keymap.set('n', '<A-1>', ":NeoTreeShowToggle<CR>")
+
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true })
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
+
+-- save with leader w
+vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })
+-- close file with leader q
+vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+
+-- better tabs
+for i = 1, 5 do
+    local index = tostring(i)
+    vim.keymap.set('n', '<leader>' .. index, index .. 'gt')
+end
+
 -- Fix annoying paste over highlight
 -- vim.keymap.set("x", "<leader>p", "\"_dP")
 --
