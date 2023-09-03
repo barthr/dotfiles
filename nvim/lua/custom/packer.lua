@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
     -- "gc" to comment visual regions/lines
     use { 'numToStr/Comment.nvim' }
 
+    use { "akinsho/toggleterm.nvim", tag = '*' }
 
     use {
         "nvim-neo-tree/neo-tree.nvim",
