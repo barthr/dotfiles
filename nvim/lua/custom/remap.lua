@@ -16,6 +16,7 @@ vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })
 -- close file with leader q
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<leader>qa', ':qa<CR>', { silent = true })
 
 -- better tabs
 for i = 1, 5 do
