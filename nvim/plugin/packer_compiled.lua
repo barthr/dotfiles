@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/home/bart/.local/share/nvim/site/pack/packer/start/neo-tree.nvim",
     url = "https://github.com/nvim-neo-tree/neo-tree.nvim"
   },
+  neorg = {
+    loaded = true,
+    path = "/home/bart/.local/share/nvim/site/pack/packer/start/neorg",
+    url = "https://github.com/nvim-neorg/neorg"
+  },
   ["nui.nvim"] = {
     loaded = true,
     path = "/home/bart/.local/share/nvim/site/pack/packer/start/nui.nvim",
