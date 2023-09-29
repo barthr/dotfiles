@@ -1,5 +1,6 @@
 require("custom.remap")
 require("custom.packer")
+require("custom.autocmd")
 
 -- Set color scheme
 vim.o.background = "dark"
