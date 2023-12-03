@@ -36,22 +36,23 @@ return require('packer').startup(function(use)
 
     use {
         "nvim-neorg/neorg",
-        run = ":Neorg sync-parsers",
         config = function()
             require("neorg").setup {
                 load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.defaults"] = {},  -- Loads default behaviour
                     ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.dirman"] = { -- Manages Neorg workspaces
-                        config = {
+                    ["core.dirman"] = {      -- Manages Neorg workspaces
+                    config = {
                             workspaces = {
                                 notes = "~/notes",
                             },
+                            default_workspace = "notes"
                         },
                     },
                 },
             }
         end,
+        run = ":Neorg sync-parsers",
         requires = "nvim-lua/plenary.nvim",
     }
 
