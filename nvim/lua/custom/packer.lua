@@ -6,6 +6,8 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
 
+    use { 'christoomey/vim-tmux-navigator' }
+
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.2', branch = '0.1.x', requires = { { 'nvim-lua/plenary.nvim' } } }
     use { "ellisonleao/gruvbox.nvim" }
 
@@ -42,7 +44,7 @@ return require('packer').startup(function(use)
                     ["core.defaults"] = {},  -- Loads default behaviour
                     ["core.concealer"] = {}, -- Adds pretty icons to your documents
                     ["core.dirman"] = {      -- Manages Neorg workspaces
-                    config = {
+                        config = {
                             workspaces = {
                                 notes = "~/notes",
                             },
