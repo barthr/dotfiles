@@ -11,6 +11,7 @@ export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
 export PATH=$PATH:"$HOME/.local/share/zig-11.0/"
 export PATH=$PATH:~/dotfiles/scripts
+export PATH=$PATH:~/.fzf/bin/
 
 export DOCKER_BUILDKIT=1
 
@@ -83,6 +84,8 @@ setopt PUSHD_SILENT
 
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
+source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_PREFIX=' '
 SPACESHIP_DIR_PREFIX=' '
@@ -102,10 +105,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # bun completions
-[ -s "/home/bart/.bun/_bun" ] && source "/home/bart/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
