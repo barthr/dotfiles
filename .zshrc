@@ -84,7 +84,7 @@ setopt PUSHD_SILENT
 
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
-source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+# source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_PREFIX=' '
@@ -106,4 +106,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # bun completions
 
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
