@@ -1,27 +1,30 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/opt/jetbrains/intelij/bin
-export PATH=$PATH:~/Flutter/flutter/bin
+export PATH=$PATH:~/home/bart/Downloads/flutter
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export PATH=~/.npm-global/bin:$PATH
 export EDITOR=nvim
 export PATH=~/.npm-global/bin:$PATH
-export PATH=$PATH:/home/bart/.rbenv/bin
 export PATH=$PATH:"$HOME/.cargo/env"
-export PATH=$PATH:"$HOME/.local/share/zig-11.0/"
+export PATH=$PATH:"$HOME/.local/share/zig-14.0/"
 export PATH=$PATH:~/dotfiles/scripts
 export PATH=$PATH:~/.fzf/bin/
+export GOSUMDB=sum.golang.org
+export GOROOT=~/go
+export GOPATH=~/go/bin
+export PATH=$PATH:~/nvim/bin
+export PATH=$PATH:~/.luarocks/bin
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
 export DOCKER_BUILDKIT=1
 
 ## FLY.IO
 export FLYCTL_INSTALL="/home/bart/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-##
-#
-# VAGRANT
-## NPM
+
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -46,11 +49,17 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
-source ~/dotfiles/zsh/aliases
 
+source ~/dotfiles/zsh/aliases
 source "$(redo alias-file)"
 
-autoload -Uz compinit; compinit
+autoload -Uz compinit
+# Smarter completion initialization
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 _comp_options+=(globdots) 
 
 source ~/dotfiles/zsh/plugins/completion.zsh
@@ -59,6 +68,10 @@ fpath=(~/dotfiles/zsh/plugins $fpath)
 fpath=(~/dotfiles/zsh/plugins/zsh-completions/src $fpath)
 
 # ZSH autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
@@ -101,9 +114,6 @@ alias "v=xclip -o"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# bun completions
-
-# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+# Mise installation
+eval "$(/home/bart/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh --shims)"
