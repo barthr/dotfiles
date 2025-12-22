@@ -97,8 +97,6 @@ setopt PUSHD_SILENT
 
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
-# source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_PREFIX=' '
 SPACESHIP_DIR_PREFIX=' '
@@ -112,7 +110,8 @@ alias vim=nvim
 alias "c=xclip"
 alias "v=xclip -o"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Enable multi history widget
+source ~/dotfiles/zsh/fzf.zsh
 
 # Mise installation
 eval "$(/home/bart/.local/bin/mise activate zsh)"
