@@ -59,8 +59,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 exec --no-startup-id systemctl --user enable --now gnome-keyring-daemon.service
 
-# exec --no-startup-id sh -c 'eval "$(gnome-keyring-daemon --start --components=ssh)"'
-
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     natural_scroll enabled
 }

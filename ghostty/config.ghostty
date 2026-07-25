@@ -1,0 +1,9 @@
+font-family = JetBrains Mono
+font-size = 12
+# tmux paints explicit cell backgrounds; apply the same opacity to those cells.
+background-opacity-cells = true
+window-decoration = auto
+theme = Gruvbox Dark
+window-theme = dark
+
+command = /usr/bin/tmux new-session -A -s main

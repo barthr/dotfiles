@@ -25,11 +25,16 @@ vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/numtostr/comment.nvim" }
 })
 
--- Configuration for color theme
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+-- Match tmux-gruvbox's default dark/medium background (#282828).
+-- vim.o.background = "dark"
+require("gruvbox").setup({ contrast = "medium" })
+vim.cmd.colorscheme("gruvbox")
+
+-- Let WezTerm's Gruvbox background show through Neovim.
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
@@ -88,6 +93,18 @@ vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
 -- Treesitter configu
 require "nvim-treesitter.configs".setup({ highlight = { enable = true } })
+
+require("Comment").setup()
+
+vim.keymap.set('n', '<C-/>', function()
+    require('Comment.api').toggle.linewise.current()
+end, { noremap = true, silent = true })
+
+vim.keymap.set('x', '<C-/>', function()
+    local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+    vim.api.nvim_feedkeys(esc, 'nx', false) -- Exit visual mode
+    require('Comment.api').toggle.linewise(vim.fn.visualmode())
+end, { noremap = true, silent = true })
 
 -- Configuration for LSP
 require("mason").setup()

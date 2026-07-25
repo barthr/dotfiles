@@ -8,7 +8,6 @@ export PATH=~/.npm-global/bin:$PATH
 export EDITOR=nvim
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:"$HOME/.cargo/env"
-export PATH=$PATH:"$HOME/.local/share/zig-14.0/"
 export PATH=$PATH:~/dotfiles/scripts
 export PATH=$PATH:~/.fzf/bin/
 export GOSUMDB=sum.golang.org
@@ -21,10 +20,6 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
 export DOCKER_BUILDKIT=1
 
-## FLY.IO
-export FLYCTL_INSTALL="/home/bart/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -33,8 +28,6 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
-
-alias python3="/usr/bin/python3.9"
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
@@ -50,9 +43,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-source ~/dotfiles/zsh/aliases
-source "$(redo alias-file)"
-
 autoload -Uz compinit
 # Smarter completion initialization
 if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
@@ -63,7 +53,6 @@ fi
 _comp_options+=(globdots) 
 
 source ~/dotfiles/zsh/plugins/completion.zsh
-
 fpath=(~/dotfiles/zsh/plugins $fpath)
 fpath=(~/dotfiles/zsh/plugins/zsh-completions/src $fpath)
 
@@ -114,5 +103,5 @@ alias "v=xclip -o"
 source ~/dotfiles/zsh/fzf.zsh
 
 # Mise installation
-eval "$(/home/bart/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
 eval "$(mise activate zsh --shims)"
