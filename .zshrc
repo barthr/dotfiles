@@ -43,28 +43,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-autoload -Uz compinit
-# Smarter completion initialization
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-    compinit
-else
-    compinit -C
-fi
-_comp_options+=(globdots) 
-
-source "$DOTFILES_DIR/zsh/plugins/completion.zsh"
-fpath=("$DOTFILES_DIR/zsh/plugins" $fpath)
-fpath=("$DOTFILES_DIR/zsh/plugins/zsh-completions/src" $fpath)
-
-# ZSH autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-
-source "$DOTFILES_DIR/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^ ' autosuggest-accept
 
-autoload -Uz git.zsh; git.zsh
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
@@ -86,14 +66,7 @@ setopt PUSHD_SILENT
 
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_CHAR_PREFIX=' '
-SPACESHIP_DIR_PREFIX=' '
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-
 fpath=($fpath "$HOME/.zfunctions")
-source "$DOTFILES_DIR/zsh/themes/spaceship-prompt/spaceship.zsh"
-source "$DOTFILES_DIR/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 alias vim=nvim
 alias "c=xclip"
