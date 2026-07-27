@@ -74,8 +74,3 @@ alias "v=xclip -o"
 
 # Enable multi history widget
 source "$DOTFILES_DIR/zsh/fzf.zsh"
-
-# Mise installation
-if (( $+commands[mise] )); then
-    eval "$(mise activate zsh)"
-fi
