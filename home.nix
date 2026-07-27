@@ -23,6 +23,7 @@ in
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    autojump
     fd
     git
     ghostty
@@ -40,7 +41,10 @@ in
   home.file = {
     ".tmux.conf".source = ./tmux/tmux.conf;
     ".config/ghostty".source = ./ghostty;
-    ".config/mise/config.toml".source = ./mise/global.toml;
+    ".config/mise/config.toml" = {
+      source = ./mise/global.toml;
+      force = true;
+    };
     ".config/nvim".source = ./nvim;
     ".config/sway".source = ./sway;
 
@@ -92,6 +96,10 @@ in
         file = "lib/spaceship-prompt/spaceship.zsh";
       }
     ];
+
+    initContent = ''
+      source ${pkgs.autojump}/share/autojump/autojump.zsh
+    '';
 
     # This must load after widgets and every other plugin.
     syntaxHighlighting.enable = true;
