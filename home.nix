@@ -42,7 +42,6 @@ in
     ".config/ghostty".source = ./ghostty;
     ".config/mise/config.toml".source = ./mise/global.toml;
     ".config/nvim".source = ./nvim;
-    ".config/spaceship.zsh".source = ./zsh/spaceship.zsh;
     ".config/sway".source = ./sway;
 
     # Keep Ghostty visible both in the application launcher and on the desktop.
@@ -66,10 +65,19 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    shellAliases.vim = "nvim";
 
     envExtra = ''
       [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] &&
         source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+      # A compact, synchronous one-line Spaceship prompt.
+      SPACESHIP_PROMPT_ORDER=(dir git exit_code char)
+      SPACESHIP_RPROMPT_ORDER=()
+      SPACESHIP_RPROMPT_ADD_NEWLINE=true
+      SPACESHIP_PROMPT_ASYNC=false
+      SPACESHIP_PROMPT_ADD_NEWLINE=false
+      SPACESHIP_PROMPT_SEPARATE_LINE=false
     '';
 
     plugins = [
