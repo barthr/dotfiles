@@ -1,28 +1,28 @@
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:~/go/bin
-export PATH=$PATH:/opt/jetbrains/intelij/bin
-export PATH=$PATH:~/home/bart/Downloads/flutter
+export PATH="$HOME/.local/bin:$PATH"
+export GOPATH="${GOPATH:-$HOME/go}"
+export PATH="$PATH:$GOPATH/bin"
+[[ -d /opt/jetbrains/intelij/bin ]] && export PATH="$PATH:/opt/jetbrains/intelij/bin"
+[[ -d "$HOME/Downloads/flutter/bin" ]] && export PATH="$PATH:$HOME/Downloads/flutter/bin"
 export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export PATH=~/.npm-global/bin:$PATH
 export EDITOR=nvim
-export PATH=~/.npm-global/bin:$PATH
-export PATH=$PATH:"$HOME/.cargo/env"
-export PATH=$PATH:~/dotfiles/scripts
-export PATH=$PATH:~/.fzf/bin/
 export GOSUMDB=sum.golang.org
-export GOROOT=~/go
-export GOPATH=~/go/bin
-export PATH=$PATH:~/nvim/bin
-export PATH=$PATH:~/.luarocks/bin
+export PATH="$PATH:$HOME/.luarocks/bin"
+
+typeset -g DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+export PATH="$PATH:$DOTFILES_DIR/scripts"
+
+# rustup configures the toolchain and adds Cargo's bin directory to PATH.
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
 export DOCKER_BUILDKIT=1
 
 NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export PATH="$NPM_PACKAGES/bin:$PATH"
+if (( $+commands[manpath] )); then
+    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+fi
 ## END NPM
 
 export HISTFILE="$HOME/.zsh_history"
@@ -52,16 +52,16 @@ else
 fi
 _comp_options+=(globdots) 
 
-source ~/dotfiles/zsh/plugins/completion.zsh
-fpath=(~/dotfiles/zsh/plugins $fpath)
-fpath=(~/dotfiles/zsh/plugins/zsh-completions/src $fpath)
+source "$DOTFILES_DIR/zsh/plugins/completion.zsh"
+fpath=("$DOTFILES_DIR/zsh/plugins" $fpath)
+fpath=("$DOTFILES_DIR/zsh/plugins/zsh-completions/src" $fpath)
 
 # ZSH autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$DOTFILES_DIR/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^ ' autosuggest-accept
 
 autoload -Uz git.zsh; git.zsh
@@ -91,17 +91,18 @@ SPACESHIP_CHAR_PREFIX=' '
 SPACESHIP_DIR_PREFIX=' '
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
 
-fpath=($fpath "/home/bart/.zfunctions")
-source ~/dotfiles/zsh/themes/spaceship-prompt/spaceship.zsh
-source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=($fpath "$HOME/.zfunctions")
+source "$DOTFILES_DIR/zsh/themes/spaceship-prompt/spaceship.zsh"
+source "$DOTFILES_DIR/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 alias vim=nvim
 alias "c=xclip"
 alias "v=xclip -o"
 
 # Enable multi history widget
-source ~/dotfiles/zsh/fzf.zsh
+source "$DOTFILES_DIR/zsh/fzf.zsh"
 
 # Mise installation
-eval "$(~/.local/bin/mise activate zsh)"
-eval "$(mise activate zsh --shims)"
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
+fi
