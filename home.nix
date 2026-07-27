@@ -1,4 +1,4 @@
-{ pkgs, nixgl, ... }:
+{ pkgs, lib, nixgl, ... }:
 
 let
   ghosttyWithNixGL = pkgs.writeShellScriptBin "ghostty" ''
@@ -36,6 +36,7 @@ in
     xclip
     zsh
     lazygit
+    codex
   ];
 
   # Keep the repository's existing configuration files as the source of truth.
@@ -43,7 +44,9 @@ in
   home.file = {
     ".tmux.conf".source = ./tmux/tmux.conf;
     ".config/ghostty".source = ./ghostty;
+    ".config/mise/config.toml".source = ./mise/config.toml;
     ".config/nvim".source = ./nvim;
+    ".config/spaceship.zsh".source = ./zsh/spaceship.zsh;
     ".config/sway".source = ./sway;
 
     # Keep Ghostty visible both in the application launcher and on the desktop.
@@ -63,6 +66,8 @@ in
 
   programs.zsh = {
     enable = true;
+    # Load completion definitions after the first prompt has rendered.
+    enableCompletion = false;
 
     envExtra = ''
       [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] &&
@@ -70,6 +75,11 @@ in
     '';
 
     plugins = [
+      {
+        name = "zsh-defer";
+        src = pkgs.zsh-defer;
+        file = "share/zsh-defer/zsh-defer.plugin.zsh";
+      }
       {
         name = "zsh-completions";
         src = pkgs.zsh-completions;
@@ -89,12 +99,21 @@ in
 
     # This must load after widgets and every other plugin.
     syntaxHighlighting.enable = true;
+
+    initContent = ''
+      zsh-defer -t 1 autoload -Uz compinit
+      zsh-defer -t 1 compinit -C
+    '';
   };
 
   programs.mise = {
     enable = true;
     enableZshIntegration = true;
   };
+
+  home.activation.trustMiseConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    $DRY_RUN_CMD ${pkgs.mise}/bin/mise trust --yes "$HOME/.config/mise/config.toml"
+  '';
 
   programs.home-manager.enable = true;
 }

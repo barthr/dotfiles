@@ -1,0 +1,11 @@
+[tools]
+go = "latest"
+java = "latest"
+node = "latest"
+python = "latest"
+ruby = "latest"
+rust = "latest"
+watchexec = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
