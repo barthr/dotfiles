@@ -40,7 +40,7 @@ in
   home.file = {
     ".tmux.conf".source = ./tmux/tmux.conf;
     ".config/ghostty".source = ./ghostty;
-    ".config/mise/config.toml".source = ./mise/config.toml;
+    ".config/mise/config.toml".source = ./mise/global.toml;
     ".config/nvim".source = ./nvim;
     ".config/spaceship.zsh".source = ./zsh/spaceship.zsh;
     ".config/sway".source = ./sway;
@@ -93,10 +93,6 @@ in
     enable = true;
     enableZshIntegration = true;
   };
-
-  home.activation.trustMiseConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    $DRY_RUN_CMD ${pkgs.mise}/bin/mise trust --yes "$HOME/.config/mise/config.toml"
-  '';
 
   programs.home-manager.enable = true;
 }
