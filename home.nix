@@ -1,17 +1,13 @@
-{ pkgs, lib, nixgl, ... }:
+{ pkgs, ... }:
 
 let
-  ghosttyWithNixGL = pkgs.writeShellScriptBin "ghostty" ''
-    exec ${nixgl.packages.${pkgs.system}.nixGLIntel}/bin/nixGLIntel ${pkgs.ghostty}/bin/ghostty "$@"
-  '';
-
   ghosttyDesktopEntry = ''
     [Desktop Entry]
     Version=1.0
     Type=Application
     Name=Ghostty
     Comment=A terminal emulator
-    Exec=${ghosttyWithNixGL}/bin/ghostty --gtk-single-instance=true
+    Exec=${pkgs.ghostty}/bin/ghostty --gtk-single-instance=true
     Icon=com.mitchellh.ghostty
     Categories=System;TerminalEmulator;
     Terminal=false
@@ -29,7 +25,7 @@ in
   home.packages = with pkgs; [
     fd
     git
-    ghosttyWithNixGL
+    ghostty
     neovim
     ripgrep
     tmux
@@ -58,6 +54,9 @@ in
       executable = true;
     };
   };
+
+  # Make Fedora's graphics drivers available to Nix GUI applications.
+  targets.genericLinux.enable = true;
 
   programs.fzf = {
     enable = true;
