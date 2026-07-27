@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   ghosttyDesktopEntry = ''
@@ -45,7 +45,9 @@ in
       source = ./mise/global.toml;
       force = true;
     };
-    ".config/nvim".source = ./nvim;
+    # Neovim updates its package lock file beside init.lua.
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/dotfiles/nvim";
     ".config/sway".source = ./sway;
 
     # Keep Ghostty visible both in the application launcher and on the desktop.
@@ -70,6 +72,19 @@ in
     enable = true;
     enableCompletion = true;
     shellAliases.vim = "nvim";
+    history = {
+      path = "${config.home.homeDirectory}/.zsh_history";
+      size = 2147483647;
+      save = 2147483647;
+      append = true;
+      share = true;
+      extended = true;
+      ignoreDups = true;
+      ignoreAllDups = false;
+      ignoreSpace = false;
+      expireDuplicatesFirst = false;
+      saveNoDups = true;
+    };
 
     envExtra = ''
       [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] &&
@@ -99,6 +114,19 @@ in
 
     initContent = ''
       source ${pkgs.autojump}/share/autojump/autojump.zsh
+
+      bindkey '^ ' autosuggest-accept
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+
+      bindkey '^[[1;5C' forward-word
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[H' beginning-of-line
+      bindkey '^[[F' end-of-line
+      bindkey '^[[3~' delete-char
+      bindkey '^H' backward-kill-word
+      bindkey '^[[3;5~' kill-word
+      KEYTIMEOUT=1
     '';
 
     # This must load after widgets and every other plugin.
