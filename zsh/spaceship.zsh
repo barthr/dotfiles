@@ -1,9 +1,10 @@
-# Keep the prompt responsive: only load the sections useful in everyday work.
+# Minimal, single-line Spaceship prompt.
 SPACESHIP_PROMPT_ORDER=(
-  user
   dir
-  git
-  exit_code
   char
 )
+SPACESHIP_RPROMPT_ORDER=()
+
+SPACESHIP_PROMPT_ASYNC=false
 SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false

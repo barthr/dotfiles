@@ -66,8 +66,7 @@ in
 
   programs.zsh = {
     enable = true;
-    # Load completion definitions after the first prompt has rendered.
-    enableCompletion = false;
+    enableCompletion = true;
 
     envExtra = ''
       [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] &&
@@ -75,16 +74,6 @@ in
     '';
 
     plugins = [
-      {
-        name = "zsh-defer";
-        src = pkgs.zsh-defer;
-        file = "share/zsh-defer/zsh-defer.plugin.zsh";
-      }
-      {
-        name = "zsh-completions";
-        src = pkgs.zsh-completions;
-        file = ".";
-      }
       {
         name = "zsh-autosuggestions";
         src = pkgs.zsh-autosuggestions;
@@ -99,11 +88,6 @@ in
 
     # This must load after widgets and every other plugin.
     syntaxHighlighting.enable = true;
-
-    initContent = ''
-      zsh-defer -t 1 autoload -Uz compinit
-      zsh-defer -t 1 compinit -C
-    '';
   };
 
   programs.mise = {
