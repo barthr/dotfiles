@@ -1,0 +1,13 @@
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# Nix build-result links
+/result
+/result-*
+
+# Machine-local environment files
+.env
+.env.*
+!.env.example
