@@ -28,7 +28,6 @@ in
 
   home.packages = with pkgs; [
     fd
-    fzf
     git
     ghosttyWithNixGL
     neovim
@@ -55,6 +54,11 @@ in
       text = ghosttyDesktopEntry;
       executable = true;
     };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.zsh = {
